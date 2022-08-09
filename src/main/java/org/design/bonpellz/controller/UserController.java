@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/bonpellz/user")
+@RequestMapping("/bonpellz/users")
 public class UserController {
 
     @Autowired
