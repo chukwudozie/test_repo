@@ -8,11 +8,15 @@ import java.time.ZonedDateTime;
 
 @Data
 public class ExceptionPayLoad {
+    private final String errorType;
     private final String message;
     private final HttpStatus status;
     private final ZonedDateTime time;
 
-    public ExceptionPayLoad(String message, Throwable t, HttpStatus status, ZonedDateTime time){
+
+    public ExceptionPayLoad(String message, Throwable t, String errorType, HttpStatus status, ZonedDateTime time){
+
+        this.errorType = errorType;
         this.message = message;
         this.status = status;
         this.time = time;

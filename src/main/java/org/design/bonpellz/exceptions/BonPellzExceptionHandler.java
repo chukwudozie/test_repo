@@ -14,7 +14,8 @@ public class BonPellzExceptionHandler {
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Object> registrationRequestHandler(ValidationException e){
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
-        ExceptionPayLoad payLoad = new ExceptionPayLoad(e.getMessage(),e, badRequest,
+        String errorType = e.getClass().getSimpleName().toUpperCase();
+        ExceptionPayLoad payLoad = new ExceptionPayLoad(e.getMessage(),e, errorType, badRequest,
                 ZonedDateTime.now(ZoneId.of("Z")));
 
         return new ResponseEntity<>(payLoad,badRequest);
