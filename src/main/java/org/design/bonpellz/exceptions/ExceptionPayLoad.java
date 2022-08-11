@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 @Data
 public class ExceptionPayLoad {
     private final String errorType;
-    private final String message;
+    private final String message                ;
     private final HttpStatus status;
     private final ZonedDateTime time;
 

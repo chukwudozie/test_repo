@@ -3,7 +3,9 @@ package org.design.bonpellz.service.impl;
 import org.design.bonpellz.domain.Users;
 import org.design.bonpellz.exceptions.ValidationException;
 import org.design.bonpellz.payload.EarlyAccessRequest;
+import org.design.bonpellz.payload.EmailDetails;
 import org.design.bonpellz.repository.UserRepository;
+import org.design.bonpellz.service.EmailService;
 import org.design.bonpellz.service.ErrorValidationService;
 import org.design.bonpellz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     ErrorValidationService validationService;
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     UserRepository userRepository;
@@ -42,6 +47,8 @@ public class UserServiceImpl implements UserService {
             newUsers.setHearAboutUs(request.getHearAboutUs());
             System.out.println("I got here before save");
             userRepository.save(newUsers);
+            emailService.sendEmail(new EmailDetails(request.getEmail(),
+                    "Hello welcome","Initial mail", ""));
         return newUsers;
     }
 }
