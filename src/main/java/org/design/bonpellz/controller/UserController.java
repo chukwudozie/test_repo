@@ -1,8 +1,6 @@
 package org.design.bonpellz.controller;
 
 import org.design.bonpellz.payload.EarlyAccessRequest;
-import org.design.bonpellz.payload.EmailDetails;
-import org.design.bonpellz.service.EmailService;
 import org.design.bonpellz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    private EmailService emailService;
 
     @PostMapping()
     public ResponseEntity<?> requestForEarlyAccess(@Valid @RequestBody EarlyAccessRequest request, BindingResult result){

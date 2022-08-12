@@ -1,9 +1,10 @@
 package org.design.bonpellz.service;
 
-import org.design.bonpellz.payload.EmailDetails;
+import org.design.bonpellz.payload.EarlyAccessRequest;
+
 
 public interface EmailService {
 
-    String sendEmail(EmailDetails emailDetails);
-    String sendMailWithAttachment(EmailDetails details);
+    void sendEmail(EarlyAccessRequest request);
+
 }

@@ -21,7 +21,7 @@ public class EarlyAccessRequest {
 
     @NotNull
     @Column(name = "email", unique = true)
-    @Email
+    @Email(message = "Enter a valid email")
     private String email;
 
     @NotNull
