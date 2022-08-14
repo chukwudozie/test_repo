@@ -4,6 +4,8 @@ import org.design.bonpellz.payload.EarlyAccessRequest;
 import org.design.bonpellz.service.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import utility.MessageBody;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -65,12 +67,10 @@ public class EmailServiceImpl implements EmailService {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Welcome to the BonPellz family "+request.getName()+"!");
+            message.setSubject(MessageBody.welcomeMessageSubject+request.getName()+"!");
 
             // Now set the actual message
-            message.setText("Congratulations on taking your first step in the finest journey to" +
-             "achieve true financial freedom. You are now part of a global community of parents and young" +
-             "population of the African continent who are with us on a journey to groom a new prosperous african people...");
+            message.setText(MessageBody.welcomeMessage);
 
             System.out.println("sending...");
             // Send message
