@@ -4,7 +4,7 @@ import org.design.bonpellz.payload.EarlyAccessRequest;
 import org.design.bonpellz.service.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import utility.MessageBody;
+import org.design.bonpellz.utility.MessageBody;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

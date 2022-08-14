@@ -1,4 +1,4 @@
-package utility;
+package org.design.bonpellz.utility;
 
 public class MessageBody {
 
