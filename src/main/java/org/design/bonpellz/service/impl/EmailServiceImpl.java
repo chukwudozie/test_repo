@@ -12,7 +12,6 @@ import java.util.Properties;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-
     @Value("${spring.mail.username}")
     private String emailSender;
 
@@ -42,13 +41,9 @@ public class EmailServiceImpl implements EmailService {
 
         // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
             protected PasswordAuthentication getPasswordAuthentication() {
-
                 return new PasswordAuthentication(emailSender, emailPassword);
-
             }
-
         });
 
         // Used to debug SMTP issues

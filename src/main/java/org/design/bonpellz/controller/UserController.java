@@ -22,7 +22,6 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<?> requestForEarlyAccess(@Valid @RequestBody EarlyAccessRequest request, BindingResult result){
-
         return new ResponseEntity<>(userService.getEarlyAccess(request, result), HttpStatus.OK);
     }
 }
