@@ -7,4 +7,6 @@ public interface EmailService {
 
     void sendEmail(EarlyAccessRequest request);
 
+    void  sendWithImage(EarlyAccessRequest request);
+
 }

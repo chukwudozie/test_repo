@@ -21,4 +21,15 @@ public class BonPellzExceptionHandler {
         return new ResponseEntity<>(payLoad,badRequest);
 
     }
+
+    @ExceptionHandler(EmailException.class)
+    public ResponseEntity<Object> emailExceptionHandler(EmailException e){
+        HttpStatus badRequest = HttpStatus.NOT_IMPLEMENTED;
+        String errorType = e.getClass().getSimpleName().toUpperCase();
+        ExceptionPayLoad payLoad = new ExceptionPayLoad(e.getMessage(),e, errorType, badRequest,
+                ZonedDateTime.now(ZoneId.of("Z")));
+
+        return new ResponseEntity<>(payLoad,badRequest);
+
+    }
 }

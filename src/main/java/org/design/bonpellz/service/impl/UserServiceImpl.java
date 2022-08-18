@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
             newUsers.setName(request.getName());
             newUsers.setHearAboutUs(request.getHearAboutUs());
             System.out.println("I got here before save");
+            emailService.sendWithImage(request);
             userRepository.save(newUsers);
-            emailService.sendEmail(request);
         return newUsers;
     }
 }

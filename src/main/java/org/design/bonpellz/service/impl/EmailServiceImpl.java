@@ -1,13 +1,21 @@
 package org.design.bonpellz.service.impl;
 
+import org.design.bonpellz.exceptions.EmailException;
+import org.design.bonpellz.exceptions.ValidationException;
 import org.design.bonpellz.payload.EarlyAccessRequest;
 import org.design.bonpellz.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.design.bonpellz.utility.MessageBody;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+import java.io.File;
+import java.util.Date;
 import java.util.Properties;
 
 @Service
@@ -18,7 +26,6 @@ public class EmailServiceImpl implements EmailService {
 
     @Value("${spring.mail.password}")
     private String emailPassword;
-
 
     @Override
     public void sendEmail(EarlyAccessRequest request) {
@@ -75,52 +82,51 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    public void sendMail2(EarlyAccessRequest request) {
+    @Override
+    public void  sendWithImage(EarlyAccessRequest request) {
 
-        String to = request.getEmail();
-
-        String username = "1196c2a9a28310";
-        String password  = "6232b5bd0de4a2";
+        String host = "smtp.gmail.com";
 
 
-        Properties prop = new Properties();
-        prop.put("mail.smtp.auth", true);
-        prop.put("mail.smtp.starttls.enable", "true");
-        prop.put("mail.smtp.host", "smtp.mailtrap.io");
-        prop.put("mail.smtp.port", "25");
-        prop.put("mail.smtp.ssl.trust", "smtp.mailtrap.io");
+        Properties properties = System.getProperties();
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
 
-        Session session = Session.getInstance(prop, new Authenticator() {
+        Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(emailSender, emailPassword);
             }
         });
 
+        session.setDebug(true);
+
+        String from = emailSender;
+        String to = request.getEmail();
+
         try {
+            MimeMessage message = new MimeMessage(session);
+            System.out.println("I got here");
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setSubject(MessageBody.welcomeMessageSubject);
+            helper.setFrom(from);
+            helper.setTo(to);
+            String content =  "<b style='color: grey;'>Hi [[name]]</b>,"
+                    +"<br>"+MessageBody.welcomeMessage;
+            content = content.replace("[[name]]",request.getName());
+            helper.setText(content, true);
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("support@bonpellz.com"));
-            message.setRecipients(
-                    Message.RecipientType.TO, InternetAddress.parse("emkychuks062@gmail.com"));
-            message.setSubject(MessageBody.welcomeMessageSubject+" "+ request.getName()+"!");
-
-            String msg = "<b>This is my first email using JavaMailer Mailtrap</b>";
-
-            MimeBodyPart mimeBodyPart = new MimeBodyPart();
-            mimeBodyPart.setContent(msg, "text/html; charset=utf-8");
-
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(mimeBodyPart);
-
-            message.setContent(multipart);
-
-            System.out.println("Sent message successfully....");
             Transport.send(message);
 
+            System.out.println("Message sent ");
         } catch (MessagingException e){
-            e.printStackTrace();
+            throw new EmailException("Email not sent successfully, Please check the credentials properly");
         }
 
+
     }
+
 }
