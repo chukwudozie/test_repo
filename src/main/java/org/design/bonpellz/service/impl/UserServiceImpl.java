@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
                 System.out.println(validations);
                 throw new ValidationException(Objects.requireNonNull(validations.getBody()).toString());
             }
-            String uniqueReferralCode = createRandomCode(request);
+            String uniqueReferralCode = generateReferralCode(request);
             Users newUsers = new Users();
             newUsers.setActivated(false);
             newUsers.setPhoneNumber(request.getPhoneNumber());
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
             return newUsers;
     }
 
-    public String createRandomCode(EarlyAccessRequest request) {
+    public String generateReferralCode(EarlyAccessRequest request) {
         char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".toCharArray();
         StringBuilder sb = new StringBuilder();
         Random random = new SecureRandom();
