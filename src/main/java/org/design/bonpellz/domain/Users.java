@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -40,6 +43,16 @@ public class Users {
 
     @Column(name = "hear_about_us")
     private String hearAboutUs;
+
+    @OneToOne
+    @JoinColumn(name = "referral_id", referencedColumnName = "id")
+    private Users referredBy;
+
+    @OneToMany
+    private Set<Referral> referrals;
+
+    @Column(name = "referral_code")
+    private String uniqueReferralCode;
 
 
 }

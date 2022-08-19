@@ -2,7 +2,9 @@ package org.design.bonpellz.service.impl;
 
 import org.design.bonpellz.exceptions.EmailException;
 import org.design.bonpellz.payload.EarlyAccessRequest;
+import org.design.bonpellz.repository.UserRepository;
 import org.design.bonpellz.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ import java.util.Properties;
 
 @Service
 public class EmailServiceImpl implements EmailService {
+
+    @Autowired
+    UserRepository userRepository;
 
     @Value("${spring.mail.username}")
     private String emailSender;
@@ -44,9 +49,8 @@ public class EmailServiceImpl implements EmailService {
 
     }
     @Override
-    public void  sendWithImage(EarlyAccessRequest request) {
-
-
+    public void sendMail(EarlyAccessRequest request, String referralCode) {
+        init();
         try {
             MimeMessage message = new MimeMessage(session);
             System.out.println("I got here");
@@ -57,6 +61,7 @@ public class EmailServiceImpl implements EmailService {
             String content =  "<b style='color: grey;'>Hi [[name]]</b>,"
                     +"<br>"+MessageBody.welcomeMessage;
             content = content.replace("[[name]]",request.getName());
+            content = content.replace("[[code]]",referralCode);
             helper.setText(content, true);
             Transport.send(message);
 

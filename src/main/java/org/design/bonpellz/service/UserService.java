@@ -7,5 +7,5 @@ import org.springframework.validation.BindingResult;
 
 public interface UserService {
 
-     Users getEarlyAccess(EarlyAccessRequest request, BindingResult result);
+     Users getEarlyAccess(EarlyAccessRequest request, BindingResult result, String referralCode);
 }

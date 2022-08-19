@@ -27,7 +27,8 @@ public class MessageBody {
 
             "<p>That's worth a great celebration &#127874; your place in line is <span style='color: teal;'>1001.</span></p>" +
             "<p>Share your referral code with family and friends to qualify for our referral rewards. " +
-            "<span>Your Unique referral link is:</p><a href='https://bonpellz.com' style='color: teal;text-align:center'><h3>LINK</h3></a></span>\n\n" +
+            "<span>Your Unique referral link is:</p>" +
+            "<h3 style='color: teal; text-align:center'>https://bonpellz.com?referralCode=[[code]]</h3></span>\n\n" +
 
             "<p>At Bonpellz,  we are providing you opportunity to an Incredible Savings and " +
             "Investment spree, fund supermarket, simplified access to wealth management and " +
