@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
@@ -42,11 +44,15 @@ public class Users {
     private String hearAboutUs;
 
     @OneToOne
-    @JoinColumn(name = "referral_id", referencedColumnName = "id")
+    @JoinColumn(name = "referral_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Users referredBy;
+
 
     @Column(name = "referral_code")
     private String uniqueReferralCode;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 
 }

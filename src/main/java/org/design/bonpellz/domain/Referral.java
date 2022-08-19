@@ -23,12 +23,9 @@ public class Referral {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    private Set<Users> usersReferred = new HashSet<>();
 
     @OneToOne
     private Users userReferring;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    private int count;
 }

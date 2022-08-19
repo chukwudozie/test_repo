@@ -53,18 +53,28 @@ public class UserServiceImpl implements UserService {
             newUsers.setHearAboutUs(request.getHearAboutUs());
             newUsers.setUniqueReferralCode(uniqueReferralCode);
 
-        if (!referralCode.isEmpty() && Objects.nonNull(referralCode) && userRepository.existsByUniqueReferralCode(referralCode)){
+        if (!referralCode.isEmpty() && userRepository.existsByUniqueReferralCode(referralCode)){
                 Users referer =  userRepository.findByUniqueReferralCode(referralCode).orElseThrow(
                       () -> new ValidationException("Invalid referral code"));
-                Referral referral = new Referral();
-                newUsers.setReferredBy(referer);
-                referral.setUserReferring(referer);
-                Set<Users> usersReferrals = referral.getUsersReferred();
-                usersReferrals.add(newUsers);
-                userRepository.save(newUsers);
-                userRepository.save(referer);
-                referralRepository.save(referral);
-            }
+                Referral referral;
+                if (referralRepository.existsByUserReferring(referer)){
+                    referral = referralRepository.findByUserReferring(referer).get();
+                }
+                else {
+                     referral = new Referral();
+                    newUsers.setReferredBy(referer);
+                }
+            referral.setUserReferring(referer);
+            referral.setCount(referral.getCount() + 1);
+            newUsers.setReferredBy(referer);
+            referralRepository.save(referral);
+            userRepository.save(referer);
+            userRepository.save(newUsers);
+        }
+
+        if (!userRepository.existsByUniqueReferralCode(referralCode) && !referralCode.isEmpty()){
+            throw new ValidationException("INVALID REFERRAL CODE!");
+        }
         System.out.println("I got here before save");
         emailService.sendMail(request, uniqueReferralCode);
         userRepository.save(newUsers);
@@ -81,7 +91,7 @@ public class UserServiceImpl implements UserService {
             char c = chars[random.nextInt(chars.length)];
             sb.append(c);
         }
-        System.out.println(sb.toString()+" is your referral code");
+        System.out.println(sb +" is your referral code");
         return sb.toString();
 
     }
