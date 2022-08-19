@@ -7,9 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -47,9 +44,6 @@ public class Users {
     @OneToOne
     @JoinColumn(name = "referral_id", referencedColumnName = "id")
     private Users referredBy;
-
-//    @ManyToOne
-//    private Referral referrals;
 
     @Column(name = "referral_code")
     private String uniqueReferralCode;

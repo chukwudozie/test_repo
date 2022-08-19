@@ -60,12 +60,9 @@ public class UserServiceImpl implements UserService {
                 newUsers.setReferredBy(referer);
                 referral.setUserReferring(referer);
                 Set<Users> usersReferrals = referral.getUsersReferred();
-//            usersReferred.add(newUsers);
                 usersReferrals.add(newUsers);
-            userRepository.save(newUsers);
-            userRepository.save(referer);
-//            referral.getUsersReferred().add(newUsers);
-//                referral.setUserReferred(newUsers);
+                userRepository.save(newUsers);
+                userRepository.save(referer);
                 referralRepository.save(referral);
             }
         System.out.println("I got here before save");
@@ -79,8 +76,8 @@ public class UserServiceImpl implements UserService {
         char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".toCharArray();
         StringBuilder sb = new StringBuilder();
         Random random = new SecureRandom();
-        sb.append(request.getName(), 0, 3);
-        for (int i = 0; i < 5;i++) {
+        sb.append(request.getName(), 0, 4);
+        for (int i = 0; i < 6;i++) {
             char c = chars[random.nextInt(chars.length)];
             sb.append(c);
         }
