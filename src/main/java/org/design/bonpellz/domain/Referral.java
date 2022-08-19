@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,8 +23,11 @@ public class Referral {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Users userReferred;
+    @OneToMany
+    private Set<Users> usersReferred = new HashSet<>();
+
+    @OneToOne
+    private Users userReferring;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

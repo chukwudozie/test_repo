@@ -18,9 +18,6 @@ import java.util.Properties;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    @Autowired
-    UserRepository userRepository;
-
     @Value("${spring.mail.username}")
     private String emailSender;
 

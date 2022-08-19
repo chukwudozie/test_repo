@@ -48,8 +48,8 @@ public class Users {
     @JoinColumn(name = "referral_id", referencedColumnName = "id")
     private Users referredBy;
 
-    @OneToMany
-    private Set<Referral> referrals;
+//    @ManyToOne
+//    private Referral referrals;
 
     @Column(name = "referral_code")
     private String uniqueReferralCode;

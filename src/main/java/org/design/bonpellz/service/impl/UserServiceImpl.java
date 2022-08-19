@@ -57,13 +57,16 @@ public class UserServiceImpl implements UserService {
                 Users referer =  userRepository.findByUniqueReferralCode(referralCode).orElseThrow(
                       () -> new ValidationException("Invalid referral code"));
                 Referral referral = new Referral();
-
-                userRepository.save(newUsers);
-                userRepository.save(referer);
-            referral.setUserReferred(newUsers);
-            Set<Referral> usersReferrals = referer.getReferrals();
-            usersReferrals.add(referral);
-            referralRepository.save(referral);
+                newUsers.setReferredBy(referer);
+                referral.setUserReferring(referer);
+                Set<Users> usersReferrals = referral.getUsersReferred();
+//            usersReferred.add(newUsers);
+                usersReferrals.add(newUsers);
+            userRepository.save(newUsers);
+            userRepository.save(referer);
+//            referral.getUsersReferred().add(newUsers);
+//                referral.setUserReferred(newUsers);
+                referralRepository.save(referral);
             }
         System.out.println("I got here before save");
         emailService.sendMail(request, uniqueReferralCode);
