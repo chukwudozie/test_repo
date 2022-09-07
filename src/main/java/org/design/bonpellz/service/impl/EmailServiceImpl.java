@@ -2,18 +2,16 @@ package org.design.bonpellz.service.impl;
 
 import org.design.bonpellz.exceptions.EmailException;
 import org.design.bonpellz.payload.EarlyAccessRequest;
-import org.design.bonpellz.repository.UserRepository;
 import org.design.bonpellz.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.design.bonpellz.utility.MessageBody;
+import static org.design.bonpellz.utility.MessageBody.*;
 
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import java.util.Properties;
+import java.util.*;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -27,7 +25,7 @@ public class EmailServiceImpl implements EmailService {
     private Session session;
 
 
-    public void  init(){
+    public void init() {
         String host = "smtp.gmail.com";
         Properties properties = System.getProperties();
         // Setup mail server
@@ -45,27 +43,37 @@ public class EmailServiceImpl implements EmailService {
         session.setDebug(true);
 
     }
-    @Override
-    public void sendMail(EarlyAccessRequest request, String referralCode) {
-        init();
-        try {
-            MimeMessage message = new MimeMessage(session);
-            System.out.println("I got here");
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setSubject(MessageBody.welcomeMessageSubject);
-            helper.setFrom(emailSender);
-            helper.setTo(request.getEmail());
-            String content =  "<b style='color: grey;'>Hi [[name]]</b>,"
-                    +"<br>"+MessageBody.welcomeMessage;
-            content = content.replace("[[name]]",request.getName());
-            content = content.replace("[[code]]",referralCode);
-            helper.setText(content, true);
-            Transport.send(message);
 
-            System.out.println("Message sent ");
-        } catch (MessagingException e){
-            throw new EmailException("Email not sent successfully, Please check the credentials properly");
+
+    @Override
+    public void sendMailWithImage(EarlyAccessRequest request, String referralCode, Long userId) {
+     init();
+        Message message = new MimeMessage(session);
+        try{
+            message.setFrom(new InternetAddress(emailSender));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(request.getEmail()));
+            message.setSubject(welcomeMessageSubject);
+            message.setSentDate(new Date());
+            MimeMultipart multipart = new MimeMultipart("related");
+            BodyPart messageBodyPart = new MimeBodyPart();
+            Long value = userId + 1000L;
+            String placeInLine = String.valueOf(value);
+            System.out.println(value);
+
+            welcomeMessage = welcomeMessage.replace("[[name]]", request.getName());
+            welcomeMessage = welcomeMessage.replace("[[code]]", referralCode);
+            welcomeMessage = welcomeMessage.replace("[[position]]",placeInLine);
+            messageBodyPart.setContent(welcomeMessage, "text/html");
+            multipart.addBodyPart(messageBodyPart);
+
+            message.setContent(multipart);
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+
+        } catch (Exception e){
+            throw new EmailException("Error sending mail");
         }
+
 
 
     }

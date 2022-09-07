@@ -66,23 +66,23 @@ public class UserServiceImpl implements UserService {
                 }
             referral.setUserReferring(referer);
             referral.setCount(referral.getCount() + 1);
-            newUsers.setReferredBy(referer);
             referralRepository.save(referral);
             userRepository.save(referer);
-            userRepository.save(newUsers);
+            newUsers.setReferredBy(referer);
         }
 
         if (!userRepository.existsByUniqueReferralCode(referralCode) && !referralCode.isEmpty()){
-            throw new ValidationException("INVALID REFERRAL CODE!");
+            throw new ValidationException("INVALID REFERRAL CODE PROVIDED YOU  CAN CLICK on https://www.bonpellz.com TO BE REGISTERED WITHOUT REFERRAL!");
         }
-        System.out.println("I got here before save");
-        emailService.sendMail(request, uniqueReferralCode);
+
         userRepository.save(newUsers);
+        Long userId = newUsers.getId();
+        emailService.sendMailWithImage(request, uniqueReferralCode,userId);
         System.out.println(newUsers.getUniqueReferralCode());
-            return newUsers;
+        return newUsers;
     }
 
-    public String generateReferralCode(EarlyAccessRequest request) {
+    private String generateReferralCode(EarlyAccessRequest request) {
         char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz".toCharArray();
         StringBuilder sb = new StringBuilder();
         Random random = new SecureRandom();

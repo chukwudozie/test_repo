@@ -44,7 +44,7 @@ public class Users {
     private String hearAboutUs;
 
     @OneToOne
-    @JoinColumn(name = "referral_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "referral_id", referencedColumnName = "id", updatable = false)
     private Users referredBy;
 
 

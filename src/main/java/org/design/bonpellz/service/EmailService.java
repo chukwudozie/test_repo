@@ -6,6 +6,7 @@ import org.design.bonpellz.payload.EarlyAccessRequest;
 public interface EmailService {
 
 
-    void sendMail(EarlyAccessRequest request, String referralCode);
+
+    void sendMailWithImage(EarlyAccessRequest request, String referralCode, Long userId);
 
 }
