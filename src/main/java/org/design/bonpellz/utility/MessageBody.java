@@ -52,7 +52,7 @@ public class MessageBody {
             "            <div>\n" +
             "                <h3 style=\"color: rgba(0,0,0,0.6); font-weight:700; padding: 20px 0; width: 100%;\">You're better off starting any moment from now!</h3></div>\n" +
             "                <div>\n" +
-            "                    <p>Invite more people through your referral link to join the Bonpellz Global Community. \n" +
+            "                    <p>Invite more people through your referral link to join the Bonpellz Global Community.<br><br>\n" +
             "                    Be a Super fan of Bonpellz when you rank among the top Bonpellzers that has the highest number of onboarded invitee and win a huge cash price of <b>#200,000</b> at our official launch.<br/>\n" +
             "                    <p style=\"margin-top:20px; margin-bottom:20px\">Talk soon</p>\n" +
             "                    <p style=\"margin-top:20px; margin-bottom:20px\"><b>Joseph</b></p>\n" +
