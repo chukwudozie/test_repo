@@ -45,7 +45,7 @@ public class MessageBody {
             "                    <ul>\n" +
             "                        <li style=\"padding: 5px 0;\">Signing up for early access gives you an edge of being among the first people that would know about Bonpellz's beta app release and first to have access to all our amazing rewards and value offerings.</li>\n" +
             "                        <li style=\"padding: 5px 0;\">Inviting your family and friends to join Bonpellz will help grow this lovely community of one big family on a paradigm shift mission to change the narrative of Africa and her descent wherever they are on the planet.</li>\n" +
-            "                        <li style=\"padding: 5px 0;\">The most exciting benefits for you is that the more you share to invite and people get onboarded through your referral link, the more your chance of making your friends and family to be among the lucky families or persons that will qualify for our annual travels and tours, At our official launching (not MVP release but Beta app) winners will be announced.</li>\n" +
+            "                        <li style=\"padding: 5px 0;\">The most exciting benefits for you is that the more you share to invite and people get onboarded through your referral link, the more your chance of making your friends and family to be among the lucky families or persons that will qualify for our annual travels and tours, At our official launching (not MVP release but Beta) winners will be announced.</li>\n" +
             "                    </ul>\n" +
             "                  </div>\n" +
             "              </div>\n" +
