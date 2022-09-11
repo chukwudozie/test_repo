@@ -20,7 +20,7 @@ public class MessageBody {
             "            <div class=\"background-container\">\n" +
             "          <div style=\"font-size: 14px; font-family: 'Verdana', Geneva, Tahoma, sans-serif; padding: 20px;\">\n" +
             "            <p>\n" +
-            "              <span style=\"color: teal; font-weight: 700\">Congratulations!!! </span> on taking your first step in the finest journey to achieve true financial freedom." +
+            "              <span style=\"color: teal; font-weight: 700; font-size: 19px;\">Congratulations!!! </span> on taking your first step in the finest journey to achieving true financial freedom." +
             "               You are now part of a global community of parents and young population of the African continent " +
             "               who are with us on a journey to groom a new prosperous African people, economy and continent as a whole while achieving financial freedom seamlessly.\n" +
             "            </p>\n" +
@@ -39,18 +39,18 @@ public class MessageBody {
             "               kids (and all).\n" +
             "              </p>\n" +
             "              <div>\n" +
-            "                  <h3 style=\"color: rgba(0,0,0,0.6); font-weight:700; padding: 20px 0;\">Now that you have signed up for early access:</h3>\n" +
+            "                  <h3 style=\"color: rgba(0,0,0,0.6); font-weight:700; padding: 20px 0; font-size: 19px;\">Now that you have signed up for early access:</h3>\n" +
             "                  <div>\n" +
             "                    Here are the benefits of getting early access to this lovely community.\n" +
             "                    <ul>\n" +
             "                        <li style=\"padding: 5px 0;\">Signing up for early access gives you an edge of being among the first people that would know about Bonpellz's beta app release and first to have access to all our amazing rewards and value offerings.</li>\n" +
             "                        <li style=\"padding: 5px 0;\">Inviting your family and friends to join Bonpellz will help grow this lovely community of one big family on a paradigm shift mission to change the narrative of Africa and her descent wherever they are on the planet.</li>\n" +
-            "                        <li style=\"padding: 5px 0;\">The most exciting benefits for you is that the more you share to invite and people get onboarded through your referral link, the more your chance of making your friends and family to be among the lucky families or persons that will qualify for our annual travels and tours, At our official launching (not MVP release but Beta) winners will be announced.</li>\n" +
+            "                        <li style=\"padding: 5px 0;\">The most exciting benefits for you is that the more you share to invite and people get onboarded through your referral link, the more your chance of making your friends and family to be among the lucky families or persons that will qualify for our annual travels and tours, At our official launching (not MVP release but Beta app) winners will be announced.</li>\n" +
             "                    </ul>\n" +
             "                  </div>\n" +
             "              </div>\n" +
             "            <div>\n" +
-            "                <h3 style=\"color: rgba(0,0,0,0.6); font-weight:700; padding: 20px 0; width: 100%;\">You're better off starting any moment from now!</h3></div>\n" +
+            "                <h3 style=\"color: rgba(0,0,0,0.6); font-weight:700; padding: 20px 0; width: 100%; font-size: 19px;\">You're better off starting any moment from now!</h3></div>\n" +
             "                <div>\n" +
             "                    <p>Invite more people through your referral link to join the Bonpellz Global Community.<br><br>\n" +
             "                    Be a Super fan of Bonpellz when you rank among the top Bonpellzers that has the highest number of onboarded invitee and win a huge cash price of <b>#200,000</b> at our official launch.<br/>\n" +
