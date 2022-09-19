@@ -1,6 +1,11 @@
 package org.design.bonpellz.payload;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 
 @Getter
 @Setter

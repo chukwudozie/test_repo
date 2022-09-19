@@ -6,12 +6,21 @@ import org.design.bonpellz.service.EmailService;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import static org.design.bonpellz.utility.MessageBody.*;
+import static org.design.bonpellz.utility.MessageBody.welcomeMessage;
+import static org.design.bonpellz.utility.MessageBody.welcomeMessageSubject;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.BodyPart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Authenticator;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.Message;
+import java.util.Properties;
+import java.util.Date;
 
-import javax.mail.*;
-import javax.mail.internet.*;
-
-import java.util.*;
 
 @Service
 public class EmailServiceImpl implements EmailService {

@@ -1,5 +1,6 @@
 package org.design.bonpellz.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.design.bonpellz.domain.Referral;
 import org.design.bonpellz.domain.Users;
 import org.design.bonpellz.exceptions.ValidationException;
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.Objects;
+import java.util.Random;
 
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -91,7 +94,7 @@ public class UserServiceImpl implements UserService {
             char c = chars[random.nextInt(chars.length)];
             sb.append(c);
         }
-        System.out.println(sb +" is your referral code");
+        log.info("your referral code is {}",sb);
         return sb.toString();
 
     }
