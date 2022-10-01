@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "early-users")
 @Getter
 @Setter
 @AllArgsConstructor

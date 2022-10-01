@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -83,6 +84,11 @@ public class UserServiceImpl implements UserService {
         emailService.sendMailWithImage(request, uniqueReferralCode,userId);
         System.out.println(newUsers.getUniqueReferralCode());
         return newUsers;
+    }
+
+    @Override
+    public List<Users> getAllSavedUsers() {
+        return userRepository.findAll();
     }
 
     private String generateReferralCode(EarlyAccessRequest request) {

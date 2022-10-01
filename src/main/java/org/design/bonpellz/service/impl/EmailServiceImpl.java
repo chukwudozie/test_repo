@@ -82,9 +82,6 @@ public class EmailServiceImpl implements EmailService {
         } catch (Exception e){
             throw new EmailException("Error sending mail");
         }
-
-
-
     }
 
 }
